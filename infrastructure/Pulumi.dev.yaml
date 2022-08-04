@@ -1,0 +1,19 @@
+config:
+  auth0:client-id: hBIItXmtdsLLyPa8D3QK5Tw8s5XSphUe
+  auth0:client-secret:
+    secure: AAABALz0x/pZcbnMHaxMSj+f/0DaWHmcVgIEU7x9XL8YD5LA+mfqRQaB2S2QQ//XI+Bie/pza8QSscs7JB7z7uhZa3FZC6Po9orBbFa1k9DKTBPOoDOxG4c+uC2gfPFV
+  auth0:domain: dev-24k8uczk.us.auth0.com
+  auth0:identifier: https://user-management.api
+  auth0:management-api-identifier: https://dev-24k8uczk.us.auth0.com/api/v2/
+  auth0:temp-password:
+    secure: AAABAPXMINBfcUgmCIymUvvRX2OWKBrdO9K72VFDZWcdOEbyj22gj94=
+  aws:region: us-east-1
+  db:name: user_management_app
+  db:password:
+    secure: AAABAMCIjcLUHsab2/rekAWZn0+OyqlbabGt4BKucXLy6lxFSYRiRg==
+  db:username: ikovac
+  identity-service:docker-image: ikovac01/identity-service
+  rabbitmq:password:
+    secure: AAABAF0CTGHeiNTeYaFGZkan1Vq/n6BhfhDwQCRy2C6HzMDoEw==
+  rabbitmq:user: admin
+  user-management-service:docker-image: ikovac01/user-management-service
