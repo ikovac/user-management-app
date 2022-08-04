@@ -1,3 +1,4 @@
 # User Management App
 
-🚧 Work in progress
+### Architecture Diagram:
+![architecture diagram](./images/user-management.drawio.png)
