@@ -1,0 +1,52 @@
+version: "3"
+services:
+  db:
+    image: postgres:14.2
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test123
+      POSTGRES_DB: user_management_app
+  rabbitmq:
+    image: rabbitmq:3-management
+    volumes:
+      - ./rabbitmq/var/lib:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    env_file:
+      - ./rabbitmq/.env
+  user-management:
+    build: './user-management'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rabbitmq
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=user_management_app
+      - DB_USER=test
+      - DB_PASSWORD=test123
+      - RABBITMQ_USER=test
+      - RABBITMQ_PASSWORD=test
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - AUTH0_DOMAIN=your_auth0_domain
+      - AUTH0_IDENTIFIER=your_auth0_api_identifier
+  identity:
+    build: './identity'
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_USER=test
+      - RABBITMQ_PASSWORD=test
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - AUTH0_DOMAIN=your_auth0_domain
+      - AUTH0_CLIENT_ID=your_auth0_client_id
+      - AUTH0_CLIENT_SECRET=your_auth0_client_secret  
+      - AUTH0_MANAGEMENT_API_IDENTIFIER=auth0_management_api_identifier
+      - AUTH0_TEMP_PASSWORD=temp_password
